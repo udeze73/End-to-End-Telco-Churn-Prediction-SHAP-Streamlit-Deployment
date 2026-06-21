@@ -45,17 +45,26 @@ To mitigate this issue:
 - XGBoost → `scale_pos_weight`
 
 These techniques force the models to pay greater attention to the minority churn class, improving recall and balanced classification performance.
-
-## 🤖 Base Models
-
-The following base learners were trained:
-
-1. Logistic Regression (LR)
-2. Random Forest (RF)
-3. Support Vector Machine (SVM)
-4. XGBoost (XGB)
-
 Each model was embedded within a preprocessing pipeline to eliminate data leakage.
+
+## 📈 Base Model Performance
+
+| Model | F1 | Precision | Recall | ROC-AUC | Balanced Accuracy |
+|---------|------|----------|---------|----------|----------|
+| Random Forest | 0.638 | 0.578 | 0.713 | 0.845 | 0.763 |
+| XGBoost | 0.617 | 0.555 | 0.694 | 0.839 | 0.747 |
+| LogisticRegression | 0.616 | 0.506 | 0.787 | 0.842 | 0.755 |
+| SVM | 0.610 | 0.666 | 0.562 | 0.840 | 0.731 |
+
+## 📊 Final stacked Model Performance
+
+| Metric | Score |
+|---|---|
+| F1 Score | 0.636 |
+| Precision | 0.551 |
+| Recall | 0.752 |
+| ROC-AUC | 0.839 |
+| Balanced Accuracy | 0.766 |
 
 ## 🔥 Why Stacking?
 
@@ -78,38 +87,7 @@ Customer Features
         ↓
  Final Churn Prediction
 
-## 📂 Project Structure
-
 ```
-.
-├── churn_notebook_clean.ipynb     # Full training pipeline: EDA, feature engineering,
-│                                   # stacking, threshold tuning, SHAP analysis
-├── churn_prediction_app.py        # Streamlit app — single customer prediction + SHAP
-├── chun_model_bundle.pkl          # Saved trained models (base pipelines + meta model)
-├── shap_artifacts.pkl             # Saved SHAP explainer objects
-├── requirements.txt               # Python dependencies
-├── .streamlit/config.toml         # App theme configuration
-└── README.md                      # You are here
-```
-
-## 📈 Base Model Performance
-
-| Model | F1 | Precision | Recall | ROC-AUC | Balanced Accuracy |
-|---------|------|----------|---------|----------|----------|
-| Random Forest | 0.638 | 0.578 | 0.713 | 0.845 | 0.763 |
-| XGBoost | 0.617 | 0.555 | 0.694 | 0.839 | 0.747 |
-| LogisticRegression | 0.616 | 0.506 | 0.787 | 0.842 | 0.755 |
-| SVM | 0.610 | 0.666 | 0.562 | 0.840 | 0.731 |
-
-## 📊 Final stacked Model Performance
-
-| Metric | Score |
-|---|---|
-| F1 Score | 0.636 |
-| Precision | 0.551 |
-| Recall | 0.752 |
-| ROC-AUC | 0.839 |
-| Balanced Accuracy | 0.766 |
 
 ## 🔍 Explainability with SHAP
 
@@ -149,6 +127,19 @@ The final application includes:
 - SHAP Explainability
 - Streamlit Deployment
 - Production-Oriented Machine Learning
+
+## 📂 Project Structure
+
+```
+.
+├── churn_notebook_clean.ipynb     # Full training pipeline: EDA, feature engineering,
+│                                   # stacking, threshold tuning, SHAP analysis
+├── churn_prediction_app.py        # Streamlit app — single customer prediction + SHAP
+├── chun_model_bundle.pkl          # Saved trained models (base pipelines + meta model)
+├── shap_artifacts.pkl             # Saved SHAP explainer objects
+├── requirements.txt               # Python dependencies
+├── .streamlit/config.toml         # App theme configuration
+└── README.md                      # You are here
 
 ## 🛠️ Running Locally
 
